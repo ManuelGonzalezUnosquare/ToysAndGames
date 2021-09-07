@@ -8,7 +8,10 @@ namespace DAL.ViewModels
 {
     public class SearchViewModel
     {
-        public Guid Guid { get; set; }
-        public bool Active { get; set; }
+       
+        public Guid? Guid { get; set; }
+        public bool? Active { get; set; } = false;
+        public int Page { get; set; } = 1;
+        public int PerPage { get; set; } = 15;
     }
 }
