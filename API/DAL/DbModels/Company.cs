@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DbModels
 {
-    public class Company : BaseModel
+    public class Company : BaseViewModel
     {
         [MaxLength(50)]
         public string Name { get; set; }

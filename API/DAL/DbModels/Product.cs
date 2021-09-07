@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL.DbModels
 {
-    public class Product : BaseModel
+    public class Product : BaseViewModel
     {
         [Required]
         [MaxLength(50)]
