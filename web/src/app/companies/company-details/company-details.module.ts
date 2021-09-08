@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
 
+import { CompanyDetailsRoutingModule } from './company-details-routing.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule
-  ],
-  providers:[
-    HttpClientModule
+    CompanyDetailsRoutingModule
   ]
 })
-export class CoreModule { }
+export class CompanyDetailsModule { }

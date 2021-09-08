@@ -1,0 +1,25 @@
+mat-toolbar.page-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 24px 16px;
+  background: none;
+  height: auto;
+  h1 {
+    font-weight: 400;
+    font-size: 38.4px;
+    color: #999999;
+    line-height: 1;
+    letter-spacing: -0.2186px;
+  }
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+}

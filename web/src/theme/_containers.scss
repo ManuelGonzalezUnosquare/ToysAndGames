@@ -1,0 +1,16 @@
+.main-container {
+  height: 100vh;
+  width: auto;
+  background-color: #f5f5f5;
+
+  .app-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: auto;
+  }
+}
+
+.container-spacer {
+  flex: 1 1 auto;
+}

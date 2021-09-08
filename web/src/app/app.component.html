@@ -1,11 +1,12 @@
-
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>Games & Toys</span>
-    <span class="example-spacer"></span>
-    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
-    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
-  </mat-toolbar-row>
-</mat-toolbar>
-
-<router-outlet></router-outlet>
+<div class="main-container">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Games & Toys</span>
+      <span class="container-spacer"></span>
+      <mat-icon class="icon" aria-hidden="false" aria-label="Example heart icon">help</mat-icon>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="app-container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
