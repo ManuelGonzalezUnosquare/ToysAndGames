@@ -1,4 +1,5 @@
 using DAL;
+using DAL.Maps;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -41,7 +42,8 @@ namespace ToysAndGames
 
             //services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(AsyncRepository<>));
+
+            services.AddAutoMapper(typeof(Maps));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
