@@ -2,12 +2,10 @@
 using DAL;
 using DAL.DbModels;
 using DAL.ViewModels;
-using Microsoft.EntityFrameworkCore;
 using RepositoryLayer.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RepositoryLayer.Repository
@@ -24,17 +22,52 @@ namespace RepositoryLayer.Repository
 
         public async Task<ResultViewModel<CompanyViewModel>> Add(string companyName)
         {
-            Company newEntity = new Company()
+            try
             {
-                Name = companyName
-            };
-            return new ResultViewModel<CompanyViewModel>(_mapper.Map<CompanyViewModel>(Add(newEntity)));
+                if (string.IsNullOrEmpty(companyName))
+                {
+                    throw new Exception("Invalid company name");
+                }
+                companyName = companyName.ToLower().Trim();
+
+                Company existingCompany = _context.Companies.FirstOrDefault(f => f.Name == companyName);
+
+                if (existingCompany != null)
+                {
+                    throw new Exception("Already exists a company with that name");
+                }
+
+                Company newEntity = new Company()
+                {
+                    Name = companyName
+                };
+                return new ResultViewModel<CompanyViewModel>(_mapper.Map<CompanyViewModel>(Add(newEntity)));
+            }
+            catch (Exception ex)
+            {
+                return new ResultViewModel<CompanyViewModel>(ex);
+            }
         }
 
-        public async Task<ResultViewModel<CompanyViewModel>> Delete(CompanyViewModel model)
+        public async Task<ResultViewModel<CompanyViewModel>> Delete(Guid guid, bool isPermanent)
         {
-            Company newEntity = _mapper.Map<Company>(model);
-            return new ResultViewModel<CompanyViewModel>(_mapper.Map<CompanyViewModel>(Delete(newEntity)));
+            try
+            {
+                Company company = FindByGuid(guid);
+                if (isPermanent)
+                {
+                    return new ResultViewModel<CompanyViewModel>(_mapper.Map<CompanyViewModel>(Delete(company)));
+                }
+                else
+                {
+                    company.Active = false;
+                    return new ResultViewModel<CompanyViewModel>(_mapper.Map<CompanyViewModel>(Update(company)));
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultViewModel<CompanyViewModel>(ex);
+            }
         }
 
         public async Task<ListResultViewModel<CompanyViewModel>> GetAllCompanies(SearchViewModel search)
@@ -50,8 +83,29 @@ namespace RepositoryLayer.Repository
 
         public async Task<ResultViewModel<CompanyViewModel>> Update(CompanyViewModel model)
         {
-            Company newEntity = _mapper.Map<Company>(model);
-            return new ResultViewModel<CompanyViewModel>(_mapper.Map<CompanyViewModel>(Update(newEntity)));
+            try
+            {
+                if (string.IsNullOrEmpty(model.Name))
+                {
+                    throw new Exception("Invalid company name");
+                }
+                model.Name = model.Name.ToLower();
+
+                Company existingCompany = _context.Companies.FirstOrDefault(f => f.Name == model.Name);
+
+                if (existingCompany != null)
+                {
+                    throw new Exception("Already exists a company with that name");
+                }
+
+                Company company = FindByGuid(model.Guid);
+                company.Name = model.Name.ToLower().Trim();
+                return new ResultViewModel<CompanyViewModel>(_mapper.Map<CompanyViewModel>(Update(company)));
+            }
+            catch (Exception ex)
+            {
+                return new ResultViewModel<CompanyViewModel>(ex);
+            }
         }
     }
 }

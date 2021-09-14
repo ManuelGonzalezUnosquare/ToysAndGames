@@ -9,6 +9,5 @@ namespace DAL.ViewModels
     public class CompanyViewModel : BaseViewModel
     {
         public string Name { get; set; }
-        public IEnumerable<ProductViewModel> Products { get; set; }
     }
 }

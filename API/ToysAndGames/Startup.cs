@@ -31,7 +31,6 @@ namespace ToysAndGames
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -39,16 +38,18 @@ namespace ToysAndGames
             });
 
             services.AddDbContext<ToysGamesContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
-
+            services.AddScoped<IProductRepository, ProductRepository>();
             services.AddAutoMapper(typeof(Maps));
+            services.AddMetrics();
+            services.AddMetricsEndpoints();
+            services.AddMetricsTrackingMiddleware();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -62,10 +63,19 @@ namespace ToysAndGames
 
             app.UseAuthorization();
 
+            app.UseCors(builder => builder
+     .AllowAnyOrigin()
+     .AllowAnyMethod()
+     .AllowAnyHeader());
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+
+            app.UseMetricsAllMiddleware();
+            //app.UseMetricsAllEndpoints();
         }
     }
 }

@@ -15,6 +15,6 @@ namespace RepositoryLayer.Contracts
         public Task<ResultViewModel<CompanyViewModel>> GetCompanyById(Guid guid);
         public Task<ResultViewModel<CompanyViewModel>> Add(string companyName);
         public Task<ResultViewModel<CompanyViewModel>> Update(CompanyViewModel model);
-        public Task<ResultViewModel<CompanyViewModel>> Delete(CompanyViewModel model);
+        public Task<ResultViewModel<CompanyViewModel>> Delete(Guid guid, bool isPermanent);
     }
 }

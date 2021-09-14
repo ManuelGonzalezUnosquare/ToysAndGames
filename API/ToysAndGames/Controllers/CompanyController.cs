@@ -18,64 +18,29 @@ namespace ToysAndGames.Controllers
             _companyRepository = companyRepository;
         }
         [HttpGet]
-        public ListResultViewModel<CompanyViewModel> GetAll([FromQuery] SearchViewModel search)
+        public Task<ListResultViewModel<CompanyViewModel>> GetAll([FromQuery] SearchViewModel search)
         {
-            try
-            {
-                return _companyRepository.GetAllCompanies(search).Result;
-            }
-            catch (System.Exception ex)
-            {
-                return new ListResultViewModel<CompanyViewModel>(ex);
-            }
+            return _companyRepository.GetAllCompanies(search);
         }
         [HttpGet("{guid}")]
-        public ResultViewModel<CompanyViewModel> GetOne([FromQuery] Guid guid)
+        public Task<ResultViewModel<CompanyViewModel>> GetOne(Guid guid)
         {
-            try
-            {
-                return _companyRepository.GetCompanyById(guid).Result;
-            }
-            catch (Exception ex)
-            {
-                return new ResultViewModel<CompanyViewModel>(ex);
-            }
+            return _companyRepository.GetCompanyById(guid);
         }
         [HttpPost]
-        public ResultViewModel<CompanyViewModel> Add([FromBody] string companyName)
+        public Task<ResultViewModel<CompanyViewModel>> Add(CompanyViewModel company)
         {
-            try
-            {
-                return _companyRepository.Add(companyName).Result;
-            }
-            catch (Exception ex)
-            {
-                return new ResultViewModel<CompanyViewModel>(ex);
-            }
+            return _companyRepository.Add(company.Name);
         }
         [HttpPut]
-        public ResultViewModel<CompanyViewModel> Update([FromBody] CompanyViewModel model)
+        public Task<ResultViewModel<CompanyViewModel>> Update(CompanyViewModel model)
         {
-            try
-            {
-                return _companyRepository.Update(model).Result;
-            }
-            catch (Exception ex)
-            {
-                return new ResultViewModel<CompanyViewModel>(ex);
-            }
+            return _companyRepository.Update(model);
         }
         [HttpDelete]
-        public ResultViewModel<CompanyViewModel> Delete([FromBody] CompanyViewModel model)
+        public Task<ResultViewModel<CompanyViewModel>> Delete(Guid guid, bool isPermanent)
         {
-            try
-            {
-                return _companyRepository.Delete(model).Result;
-            }
-            catch (Exception ex)
-            {
-                return new ResultViewModel<CompanyViewModel>(ex);
-            }
+            return _companyRepository.Delete(guid, isPermanent);
         }
     }
 
