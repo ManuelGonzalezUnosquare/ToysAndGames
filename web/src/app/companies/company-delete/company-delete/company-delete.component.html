@@ -1,1 +1,15 @@
-<p>company-delete works!</p>
+<div class="component-container">
+  <mat-toolbar role="heading" class="mat-toolbar page-header mat-toolbar-single-row">
+    <h1>Delete confirmation</h1>
+  </mat-toolbar>
+  <mat-card *ngIf="company" class="d-flex align-items-center flex-column">
+    <h2>Are you really sure do you want to delete <span color="primary">{{company.name}}</span> company?</h2>
+    <mat-slide-toggle [(ngModel)]="isPermanent">Delete Permanently</mat-slide-toggle>
+    <p>{{isPermanent ? deleteTextInfo.noPermanent : deleteTextInfo.permanent}}</p>
+    <div>
+      <button mat-raised-button (click)="delete()" class="mx-3" color="warn">Confirm</button>
+      <button mat-raised-button (click)="cancel()">No thanks</button>
+    </div>
+  
+  </mat-card>
+</div>

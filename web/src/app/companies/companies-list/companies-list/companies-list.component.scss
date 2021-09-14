@@ -1,9 +1,16 @@
 .table{
-    .mat-column-name{
-        width: 80%;
+  .mat-column-name{
+    width: 80%;
+
+    @media only screen and (max-width: 600px) {
+      width: 50%;
     }
-    .mat-column-actions{
-        text-align: center;
-        width: 20%;
+  }
+  .mat-column-actions{
+    text-align: center;
+    width: 20%;
+    @media only screen and (max-width: 600px) {
+      width: 50%;
     }
+  }
 }

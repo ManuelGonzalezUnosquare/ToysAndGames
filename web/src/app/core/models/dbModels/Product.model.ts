@@ -1,7 +1,7 @@
 import {BaseModel} from "./BaseModel.model";
 import {Company} from "./Company.model";
 
-export interface Product extends BaseModel{
+export class Product extends BaseModel{
   name:string;
   description:string;
   ageRestriction:string;

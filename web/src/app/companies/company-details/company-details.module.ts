@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { CompanyDetailsRoutingModule } from './company-details-routing.module';
 import { CompanyDetailsComponent } from './company-details/company-details.component';
 import {MaterialModule} from 'src/app/material/material.module';
+import {SharedModule} from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {MaterialModule} from 'src/app/material/material.module';
   imports: [
     CommonModule,
     CompanyDetailsRoutingModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ]
 })
 export class CompanyDetailsModule { }

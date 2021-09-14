@@ -1,11 +1,20 @@
-<mat-toolbar _ngcontent-ikv-c121="" role="heading" class="mat-toolbar page-header mat-toolbar-single-row">
-  <h1 _ngcontent-ikv-c121="">{{title}}</h1>
-  <button _ngcontent-ikv-c121="" mat-flat-button="" color="primary" [routerLink]="['/company']"
-    class="mat-focus-indicator mat-flat-button mat-button-base">
-    <span class="mat-button-wrapper">New Company</span>
-    <span matripple="" class="mat-ripple mat-button-ripple"></span>
-    <span class="mat-button-focus-overlay"></span></button>
-</mat-toolbar>
-
-
-<mat-card>Simple card</mat-card>
+<div class="component-container">
+  <mat-toolbar role="heading" class="mat-toolbar page-header mat-toolbar-single-row">
+    <h1>{{title}}</h1>
+  </mat-toolbar>
+  <mat-card>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Company Name</mat-label>
+        <input matInput placeholder="Company Name" formControlName="name">
+        <mat-error *ngIf="f.name.invalid && submitted">
+          <span *ngIf="f.name.errors && f.name.errors.required">This field is required.</span>          
+        </mat-error>
+      </mat-form-field>
+      <div class="d-flex justify-content-around">
+        <button mat-raised-button class="mx-4" color="primary" type="submit">Submit</button>
+        <button mat-button [routerLink]="['/companies']">Cancel</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
