@@ -2,41 +2,37 @@
   <mat-toolbar role="heading" class="mat-toolbar page-header mat-toolbar-single-row">
     <h1>Companies</h1>
     <div class="desktop-menu">
-      <button mat-flat-button="" color="primary" [routerLink]="['/company']"
-							class="mat-flat-button mat-button-base">
-	<span class="mat-button-wrapper">New</span>
-	<span matripple="" class="mat-ripple mat-button-ripple"></span>
-	<span class="mat-button-focus-overlay"></span></button>
+      <button mat-flat-button="" color="primary" [routerLink]="['/company']" class="mat-flat-button mat-button-base">
+        <span class="mat-button-wrapper">New</span>
+        <span matripple="" class="mat-ripple mat-button-ripple"></span>
+        <span class="mat-button-focus-overlay"></span></button>
     </div>
   </mat-toolbar>
-
   <mat-card>
-
     <table mat-table [dataSource]="dataSource" class="table">
-
       <!-- Name Column -->
       <ng-container matColumnDef="name" class="mat-column-name">
-	<th mat-header-cell *matHeaderCellDef> Name </th>
-	<td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element" class="text-capitalize"> {{element.name}} </td>
       </ng-container>
-
+      <!-- Actions Column -->
       <ng-container matColumnDef="actions" class="mat-column-actions">
-	<th mat-header-cell *matHeaderCellDef> Actions </th>
-	<td mat-cell *matCellDef="let row">	  <button mat-button color="primary" title="Edit" [routerLink]="['/company/',row.guid]">
-	    <mat-icon>edit</mat-icon>
-	  </button>
-
-	  <button mat-button color="primary" title="Delete" [routerLink]="['/company/',row.guid,'delete']">
-	    <mat-icon>delete</mat-icon>
-	  </button>
-	</td>
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let row"> <button mat-button color="primary" title="Edit"
+            [routerLink]="['/company/',row.guid]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-button color="primary" title="Delete" [routerLink]="['/company/',row.guid,'delete']">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
     <mat-paginator [length]="search.totalNumberOfRecords" [pageSize]="search.perPage" (page)="load($event)"
-	  [pageSizeOptions]="[1,5,10]">
+      [pageSizeOptions]="[1,5,10]">
     </mat-paginator>
   </mat-card>
 
@@ -45,7 +41,7 @@
   <div class="floating-mobile-menu">
     <button mat-mini-fab color="accent" [routerLink]="['/company']">
       <mat-icon>add</mat-icon>
-    </button>  
+    </button>
   </div>
 
 </div>

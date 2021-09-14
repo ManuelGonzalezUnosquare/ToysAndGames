@@ -4,11 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MaterialModule} from './material/material.module';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
-import {LoadingSpinnerService} from './core/loading-spinner/loading-spinner.service';
-import {BusyHttpRequestInterceptor} from './core/interceptors/busy-http-request.interceptor';
-import {CoreModule} from './core/core.module';
+import { MaterialModule } from './material/material.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingSpinnerService } from './core/loading-spinner/loading-spinner.service';
+import { BusyHttpRequestInterceptor } from './core/interceptors/busy-http-request.interceptor';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,13 @@ import {CoreModule} from './core/core.module';
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    SharedModule
   ],
-  providers:[
-
+  providers: [
     LoadingSpinnerService,
     {
-      provide: HTTP_INTERCEPTORS, useClass: BusyHttpRequestInterceptor, multi:true
+      provide: HTTP_INTERCEPTORS, useClass: BusyHttpRequestInterceptor, multi: true
     }
   ],
   bootstrap: [AppComponent]

@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="d-flex justify-content-around">
+        <button mat-button [matMenuTriggerFor]="menu">English</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>English</button>
+            <button mat-menu-item>Spanish</button>
+        </mat-menu>
+        <div>
+            <button mat-icon-button [routerLink]="['/account']">
+                <mat-icon>person</mat-icon>My Account
+            </button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

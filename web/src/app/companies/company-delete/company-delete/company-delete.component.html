@@ -3,7 +3,7 @@
     <h1>Delete confirmation</h1>
   </mat-toolbar>
   <mat-card *ngIf="company" class="d-flex align-items-center flex-column">
-    <h2>Are you really sure do you want to delete <span color="primary">{{company.name}}</span> company?</h2>
+    <h2>Are you really sure you want to delete <span color="primary">{{company.name}}</span> company?</h2>
     <mat-slide-toggle [(ngModel)]="isPermanent">Delete Permanently</mat-slide-toggle>
     <p>{{isPermanent ? deleteTextInfo.noPermanent : deleteTextInfo.permanent}}</p>
     <div>

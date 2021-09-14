@@ -9,7 +9,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Company } from 'src/app/core/models/dbModels';
 import { ReturnModel } from 'src/app/core/models/responses';
-import { CompanyService } from '../services/company.service';
+import { NotificationBarService } from 'src/app/core/services/notification-bar.service';
+import { CompanyService } from '../../services/company.service';
 
 @Component({
   selector: 'app-company-details',
@@ -22,7 +23,12 @@ export class CompanyDetailsComponent implements OnInit {
   submitted: boolean;
   company: Company;
   isUpdate: boolean;
-  constructor(private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, private companyService: CompanyService, private route: Router) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private companyService: CompanyService,
+    private route: Router,
+    private notificationService: NotificationBarService) {
     let guid = this.activatedRoute.snapshot.params.guid;
     if (guid) {
       this.title = 'Edit Company';
@@ -53,6 +59,7 @@ export class CompanyDetailsComponent implements OnInit {
   }
   submit(): void {
     this.submitted = true;
+    this.notificationService.closeSnackBar();
     let newValue = this.form.value;
     if (this.company) {
       newValue = { name: this.form.value.name, guid: this.company.guid };
@@ -70,10 +77,10 @@ export class CompanyDetailsComponent implements OnInit {
         this.route.navigate(['companies']);
       }
       else {
-        alert(data.error);
+        this.notificationService.openSnackBar(data.error)
       }
     }, error => {
-      alert(error.message)
+      this.notificationService.openSnackBar(error.error)
     })
   }
   put(newValue: any) {
@@ -82,10 +89,10 @@ export class CompanyDetailsComponent implements OnInit {
         this.route.navigate(['companies']);
       }
       else {
-        alert(data.error);
+        this.notificationService.openSnackBar(data.error)
       }
     }, error => {
-      alert(error.message)
+      this.notificationService.openSnackBar(error.error)
     })
   }
 }
