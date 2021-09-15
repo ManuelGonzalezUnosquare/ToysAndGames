@@ -1,1 +1,15 @@
+@import "/src/theme/colors";
 
+.sidenav {
+    width: 65vw;
+    display: flex;
+    flex-direction: column;
+    background-color: $gr-gray-500;
+    color: $gr-green-500;
+
+    mat-list {
+        a {
+            color: $gr-green-500;
+        }
+    }
+}

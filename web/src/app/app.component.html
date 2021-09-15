@@ -1,9 +1,19 @@
 <app-loading-spinner></app-loading-spinner>
-<div class="main-container">
-  <app-navbar></app-navbar>
-  <app-searchbar></app-searchbar>
+<mat-drawer-container class="main-container" autosize [hasBackdrop]="true">
+  <app-navbar (setSidebar)="drawer.toggle()"></app-navbar>
   <app-menubar></app-menubar>
+  <mat-drawer #drawer class="sidenav" mode="side" [position]="'end'" [autoFocus]="true" [mode]="'over'">
+    <div class="sidenav-header">
+      Aqui va algo fancy
+    </div>
+    <mat-divider></mat-divider>
+    <mat-list>
+      <a mat-list-item [routerLink]="['/myAccount']" (click)="drawer.toggle()" routerLinkActive="active">My Account</a>
+      <a mat-list-item [routerLink]="['/']" (click)="drawer.toggle()" routerLinkActive="active">Products</a>
+      <a mat-list-item [routerLink]="['/companies']" (click)="drawer.toggle()" routerLinkActive="active">Companies</a>
+    </mat-list>
+  </mat-drawer>
   <div class="app-container">
     <router-outlet></router-outlet>
   </div>
-</div>
+</mat-drawer-container>

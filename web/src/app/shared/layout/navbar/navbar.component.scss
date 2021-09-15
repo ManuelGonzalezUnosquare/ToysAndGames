@@ -1,0 +1,29 @@
+@import "/src/theme/colors";
+.navbar {
+    background-color: $gr-gray-500;
+    color: rgba(255, 255, 255, 0.5);
+
+    span {
+        color: $gr-green-500;
+    }
+
+    button {
+        color: $gr-green-500;
+        &:hover {
+            background-color: $gr-green-800;
+            color: $gr-white;
+        }
+    }
+
+    .desktop-menu {
+        @media only screen and (max-width: 600px) {
+            display: none;
+        }
+    }
+    .mobile-menu {
+        display: none;
+        @media only screen and (max-width: 600px) {
+            display: inline;
+        }
+    }
+}

@@ -1,6 +1,17 @@
-.active{
-    border-bottom-color: red;
-    border-bottom: 1px solid red;
-    border-radius: 0px;
-    color: red;
+@import "/src/theme/colors";
+
+.menu-toolbar {
+    background-color: $gr-gray-100;
+    display: flex;
+    justify-content: center;
+    @media only screen and (max-width: 600px) {
+        display: none;
+    }
+
+    .active {
+        border-bottom-color: $gr-gray-700;
+        border-bottom: 1px solid $gr-gray-700;
+        border-radius: 0px;
+        color: $gr-gray-700;
+    }
 }

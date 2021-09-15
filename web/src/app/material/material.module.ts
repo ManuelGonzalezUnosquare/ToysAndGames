@@ -12,6 +12,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [],
@@ -28,7 +32,11 @@ import { MatMenuModule } from '@angular/material/menu';
     MatFormFieldModule,
     MatSlideToggleModule,
     MatSnackBarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDividerModule
   ],
   exports: [
     MatPaginatorModule,
@@ -42,7 +50,11 @@ import { MatMenuModule } from '@angular/material/menu';
     MatFormFieldModule,
     MatSlideToggleModule,
     MatSnackBarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTabsModule,
+    MatSidenavModule,
+    MatListModule,
+    MatDividerModule
   ]
 })
 export class MaterialModule { }

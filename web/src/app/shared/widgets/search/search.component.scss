@@ -1,18 +1,21 @@
+@import "/src/theme/theme";
+
 .search-form {
     width: 80%;
     margin: 0 auto;
     padding: 13px 0;
     box-sizing: border-box;
 }
-.search-form .form-wrap {
+.form-wrap {
     background-color: transparent;
     white-space: nowrap;
     zoom: 1;
     width: 100%;
     margin: 0;
     position: relative;
-    background: #444;
-    background: rgba(0, 0, 0, 0.2);
+    background: $gr-gray-500;
+    min-width: 300px;
+    background: $gr-gray-500;
 }
 .search-form .form-wrap input {
     border-radius: 3px;
@@ -33,17 +36,21 @@
     margin: 0;
     cursor: pointer;
     height: 100%;
-    min-width: 50px;
+    width: 50px;
     right: -15px;
     top: 0;
-    padding: 0 35px;
+    text-align: center;
     color: #fff;
     transition: all 0.25s ease-in-out;
     text-transform: uppercase;
-    background-color: #333;
+    background-color: $gr-green-500;
     border-radius: 0 3px 3px 0;
     -webkit-border-radius: 0 3px 3px 0;
     text-shadow: 0 -1px 0 rgb(0 0 0 / 30%);
     box-shadow: none;
     -webkit-appearance: none;
+
+    &:hover {
+        background-color: $gr-green-800;
+    }
 }
