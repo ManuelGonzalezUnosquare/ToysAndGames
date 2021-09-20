@@ -1,0 +1,12 @@
+<mat-nav-list>
+    <a href="#" mat-list-item [routerLink]="['/company/',data.company.guid]" (click)="openLink($event)">
+        <span mat-line class="d-flex align-items-center">
+            <mat-icon>edit</mat-icon>&nbsp;&nbsp;View
+        </span>
+    </a>
+    <a href="#" mat-list-item [routerLink]="['/company/',data.company.guid,'delete']" (click)="openLink($event)">
+        <span mat-line class="d-flex align-items-center">
+            <mat-icon>delete</mat-icon>&nbsp;&nbsp;Delete
+        </span>
+    </a>
+</mat-nav-list>

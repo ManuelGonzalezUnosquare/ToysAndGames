@@ -1,8 +1,21 @@
 .product-card {
-    max-height: 900px;
-    width: 300px;
+     max-height: 360px;
 }
-.product-list {
-    display: flex;
-    justify-content: space-between;
+
+.carousel-container {
+    height: 100%;
+    width: 100%;
+//    padding: 15px 0px 15px 0px;
+}
+
+.product-thumbnail {
+    width: 100%;
+}
+.carousel-cell{
+    height: 85%;
+}
+
+.filter-section{
+  display:flex;
+  justify-content:center;
 }

@@ -9,33 +9,45 @@
     </div>
   </mat-toolbar>
   <mat-card>
-    <table mat-table [dataSource]="dataSource" class="table">
-      <!-- Name Column -->
-      <ng-container matColumnDef="name" class="mat-column-name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element" class="text-capitalize"> {{element.name}} </td>
-      </ng-container>
-      <!-- Actions Column -->
-      <ng-container matColumnDef="actions" class="mat-column-actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let row"> <button mat-button color="primary" title="Edit"
-            [routerLink]="['/company/',row.guid]">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-button color="primary" title="Delete" [routerLink]="['/company/',row.guid,'delete']">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    <div class="desktop-view">
+      <table mat-table [dataSource]="dataSource" class="table">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name" class="mat-column-name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element" class="text-capitalize"> {{element.name}} </td>
+        </ng-container>
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions" class="mat-column-actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let row"> <button mat-button color="primary" title="Edit"
+              [routerLink]="['/company/',row.guid]">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-button color="primary" title="Delete" [routerLink]="['/company/',row.guid,'delete']">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <div class="mobile-view">
+      <mat-nav-list>
+        <mat-list-item *ngFor="let company of companies">
+          <a matLine href="#" appStopPropagation (click)="openBottomSheet(company)" class="d-flex justify-content-between align-items-center">
+            {{company.name}}
+            <mat-icon>arrow_forward_ios</mat-icon>
+          </a>
+        </mat-list-item>
+      </mat-nav-list>
+
+    </div>
 
     <mat-paginator [length]="search.totalNumberOfRecords" [pageSize]="search.perPage" (page)="load($event)"
       [pageSizeOptions]="[1,5,10]">
     </mat-paginator>
   </mat-card>
-
 
 
   <div class="floating-mobile-menu">

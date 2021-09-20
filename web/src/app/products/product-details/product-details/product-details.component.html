@@ -1,0 +1,17 @@
+<div class="component-container" *ngIf="product">
+  <div class="product-container">
+    <div>
+      <mat-card class="m-4">
+	<img class="product-img" [src]="product.pic" />
+      </mat-card>
+    </div>
+    <div class="m-4">
+      <h2>{{product.name}}</h2>
+      <h4>{{product.price | currency}}</h4>
+      <p>{{product.description}}</p>
+      <button mat-raised-button color="primary">Primary</button>
+    </div>
+  </div>
+</div>
+
+

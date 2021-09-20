@@ -17,7 +17,7 @@ export class ProductService {
   }
 
   getByGuid(guid: string): Observable<ReturnModel<Product>> {
-    return this.requestService.get<Product>(`${this.API}+ /${guid}`);
+    return this.requestService.get<Product>(`${this.API}/${guid}`);
   }
   postCreateCompany(name: string) {
     return this.requestService.post(this.API, name);

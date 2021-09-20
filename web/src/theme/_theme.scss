@@ -1,10 +1,12 @@
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 @import "./colors";
 @include mat-core();
 
-$gt-app-primary: mat-palette($gt-green,500);
-$gt-app-accent:  mat-palette($mat-pink, 500, 900, A100);
-$gt-app-warn:    mat-palette($mat-deep-orange);
+$organe: #de6449;
+
+$gt-app-primary: mat-palette($gt-green, 500);
+$gt-app-accent: mat-palette($mat-pink, 500, 900, A100);
+$gt-app-warn: mat-palette($gt-orange,500);
 
 $my-app-theme: mat-light-theme($gt-app-primary, $gt-app-accent, $gt-app-warn);
 @include angular-material-theme($my-app-theme);

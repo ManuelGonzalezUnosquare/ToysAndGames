@@ -1,0 +1,12 @@
+.desktop-view {
+  display: block;
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
+}
+.mobile-view {
+  display: none;
+  @media only screen and (max-width: 600px) {
+    display: block;
+  }
+}

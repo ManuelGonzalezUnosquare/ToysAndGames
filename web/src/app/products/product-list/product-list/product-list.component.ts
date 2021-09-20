@@ -1,32 +1,70 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/core/models/dbModels';
 import { BaseSearchCriteria } from 'src/app/core/models/searchCriteria';
 import { NotificationBarService } from 'src/app/core/services/notification-bar.service';
 import { ProductService } from '../../services/product.service';
+import {ProductFormComponent} from '../product-form/product-form.component';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
   search = new BaseSearchCriteria();
   products: Product[] = [];
-  constructor(private prodService: ProductService, private notificationService: NotificationBarService) { }
+  dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ['name', 'price', 'actions'];
+  constructor(
+    private prodService: ProductService,
+    private notificationService: NotificationBarService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getAllProducts();
   }
   getAllProducts(): void {
-    this.prodService.getAll(this.search).subscribe(data => {
-      if (data.isSuccess) {
-        this.search.loadResultList(data);
-        this.products = data.model;
-        console.log("PRODUCTS", this.products);
+    this.prodService.getAll(this.search).subscribe(
+      (data) => {
+        if (data.isSuccess) {
+          this.search.loadResultList(data);
+          this.dataSource.data = data.model;
+          this.products = data.model;
+        }
+      },
+      (error) => {
+        this.notificationService.openSnackBar(error.message);
       }
-    }, error => {
-      this.notificationService.openSnackBar(error.message)
-    })
+    );
   }
+  load(event: PageEvent) {
+    this.search.page = event.pageIndex + 1;
+    this.search.perPage = event.pageSize;
+    this.getAllProducts();
+  }
+  searchProducts(): void {
+    if (this.search.hint && this.search.hint.length % 3 === 0) {
+      this.getAllProducts();
+    } else if (!this.search.hint) {
+      this.getAllProducts();
+    }
+  }
+  clearSearch(): void {
+    delete this.search.hint;
+    this.searchProducts();
+  }
+  openDialog():void{
+     const dialogRef = this.dialog.open(ProductFormComponent, {
+      width: 'auto',
+      data: {name: 'hola'}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }

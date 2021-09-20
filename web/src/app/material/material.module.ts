@@ -16,6 +16,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -36,7 +38,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTabsModule,
     MatSidenavModule,
     MatListModule,
-    MatDividerModule
+    MatDividerModule,
+    MatBottomSheetModule,
+    MatDialogModule,
   ],
   exports: [
     MatPaginatorModule,
@@ -54,7 +58,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTabsModule,
     MatSidenavModule,
     MatListModule,
-    MatDividerModule
-  ]
+    MatDividerModule,
+    MatBottomSheetModule,
+    MatDialogModule,
+  ],
 })
-export class MaterialModule { }
+export class MaterialModule {}

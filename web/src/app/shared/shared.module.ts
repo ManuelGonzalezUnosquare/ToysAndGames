@@ -7,6 +7,7 @@ import { MenubarComponent } from './layout/menubar/menubar.component';
 import { WorkInProgressComponent } from './pages/work-in-progress/work-in-progress.component';
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './widgets/search/search.component';
+import { StopPropagationDirective } from './directives/stop-propagation.directive';
 
 
 
@@ -15,7 +16,8 @@ import { SearchComponent } from './widgets/search/search.component';
     NavbarComponent,
     MenubarComponent,
     WorkInProgressComponent,
-    SearchComponent
+    SearchComponent,
+    StopPropagationDirective
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { SearchComponent } from './widgets/search/search.component';
     NavbarComponent,
     MenubarComponent,
     WorkInProgressComponent,
-    SearchComponent
+    SearchComponent,
+    StopPropagationDirective
   ]
 })
 export class SharedModule { }

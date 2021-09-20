@@ -1,4 +1,3 @@
-
 @import "./theme";
 @import "./Utils/Utils";
 @import "./containers";
@@ -7,3 +6,8 @@
 @import "./pageTitle";
 @import "./_floatingMenu";
 @import "./_forms";
+@import "./_responsiveMenu";
+
+body {
+  background-color: $gr-gray-background;
+}
