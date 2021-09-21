@@ -13,5 +13,6 @@ namespace DAL.ViewModels
         public bool? Active { get; set; } = true;
         public int Page { get; set; } = 1;
         public int PerPage { get; set; } = 15;
+        public string? Hint { get; set; }
     }
 }

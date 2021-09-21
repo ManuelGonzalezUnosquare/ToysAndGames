@@ -6,6 +6,7 @@ using RepositoryLayer.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -76,6 +77,7 @@ namespace RepositoryLayer.Repository
                         where v.Active == search.Active.Value
                         select v;
             }
+
             query = (from v in query
                      select v)
                      .OrderBy(f => f.Id)
@@ -84,7 +86,34 @@ namespace RepositoryLayer.Repository
 
             return query.ToList();
         }
+        public List<T> FindByParams(Func<T, bool> expression, SearchViewModel search)
+        {
+            var query = from v in _context.Set<T>()
+                        select v;
 
+            query = query.Where(expression).AsQueryable();
+
+            if (search.Guid.HasValue)
+            {
+                query = from v in query
+                        where v.Guid == search.Guid.Value
+                        select v;
+            }
+            if (search.Active.HasValue)
+            {
+                query = from v in query
+                        where v.Active == search.Active.Value
+                        select v;
+            }
+
+            query = (from v in query
+                     select v)
+                     .OrderBy(f => f.Id)
+                      .Skip((search.Page - 1) * search.PerPage)
+                      .Take(search.PerPage);
+
+            return query.ToList();
+        }
         public T Update(T model)
         {
             var res =_context.Set<T>().Update(model);

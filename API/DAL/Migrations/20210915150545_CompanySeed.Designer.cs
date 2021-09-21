@@ -4,14 +4,16 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DAL.Migrations
 {
     [DbContext(typeof(ToysGamesContext))]
-    partial class ToysGamesContextModelSnapshot : ModelSnapshot
+    [Migration("20210915150545_CompanySeed")]
+    partial class CompanySeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,19 +53,19 @@ namespace DAL.Migrations
                         {
                             Id = 1,
                             Active = true,
-                            CreatedAt = new DateTime(2021, 9, 15, 15, 31, 45, 485, DateTimeKind.Utc).AddTicks(9898),
-                            Guid = new Guid("1ba0cfdd-08a2-436c-82e3-9d88eb3f407e"),
+                            CreatedAt = new DateTime(2021, 9, 15, 15, 5, 44, 765, DateTimeKind.Utc).AddTicks(21),
+                            Guid = new Guid("d67f2165-be02-4c6a-b99c-2d056522312b"),
                             Name = "Mattel",
-                            UpdatedAt = new DateTime(2021, 9, 15, 15, 31, 45, 486, DateTimeKind.Utc).AddTicks(397)
+                            UpdatedAt = new DateTime(2021, 9, 15, 15, 5, 44, 765, DateTimeKind.Utc).AddTicks(404)
                         },
                         new
                         {
                             Id = 2,
                             Active = true,
-                            CreatedAt = new DateTime(2021, 9, 15, 15, 31, 45, 486, DateTimeKind.Utc).AddTicks(1118),
-                            Guid = new Guid("3dd74d2b-d65b-4705-b0d8-19e85e40852c"),
+                            CreatedAt = new DateTime(2021, 9, 15, 15, 5, 44, 765, DateTimeKind.Utc).AddTicks(1069),
+                            Guid = new Guid("3dd4c0cf-6ba0-4e94-bb4e-e78501df1d96"),
                             Name = "Nintendo",
-                            UpdatedAt = new DateTime(2021, 9, 15, 15, 31, 45, 486, DateTimeKind.Utc).AddTicks(1120)
+                            UpdatedAt = new DateTime(2021, 9, 15, 15, 5, 44, 765, DateTimeKind.Utc).AddTicks(1072)
                         });
                 });
 
@@ -123,14 +125,14 @@ namespace DAL.Migrations
                             Active = true,
                             AgeRestriction = 5,
                             CompanyId = 2,
-                            CreatedAt = new DateTime(2021, 9, 15, 15, 31, 45, 487, DateTimeKind.Utc).AddTicks(5834),
+                            CreatedAt = new DateTime(2021, 9, 15, 15, 5, 44, 766, DateTimeKind.Utc).AddTicks(5374),
                             Description = "Introducing Nintendo Switch Lite, a version of the Nintendo Switch system that’s optimized.",
-                            Guid = new Guid("3db642ae-b2b9-48e1-8d77-d64edb235349"),
+                            Guid = new Guid("9082f7d4-9b6f-49cd-9faf-4ebe81d5b708"),
                             Name = "Nintendo Switch Lite",
                             Pic = "https://m.media-amazon.com/images/I/71qmF0FHj7L._AC_SL1500_.jpg",
                             PicThumbnail = "https://res.cloudinary.com/walmart-labs/image/upload/w_225,dpr_auto,f_auto,q_auto:good/mg/gm/1p/images/product-images/img_large/00004549688228l.jpg",
                             Price = 8600m,
-                            UpdatedAt = new DateTime(2021, 9, 15, 15, 31, 45, 487, DateTimeKind.Utc).AddTicks(5846)
+                            UpdatedAt = new DateTime(2021, 9, 15, 15, 5, 44, 766, DateTimeKind.Utc).AddTicks(5379)
                         });
                 });
 

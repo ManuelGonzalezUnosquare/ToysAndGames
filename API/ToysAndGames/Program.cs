@@ -42,29 +42,10 @@ namespace ToysAndGames
         public static void Main(string[] args)
         {
             var hostBuilder = CreateWebHostBuilder(args);
-
-         //   hostBuilder = hostBuilder.UseUrls($"http://0.0.0.0:{ConfigUtils.GetEnvironmentVariableOrDefault(args, "API_PORT", 9000)}");
-
             var baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            //var log = DISetup.ServiceProvider.GetService<ILog>();
-            //log.Info($" baseDir = {baseDir}");
-
-            hostBuilder = hostBuilder.UseContentRoot(baseDir);
-
+            hostBuilder = hostBuilder.UseContentRoot(baseDir);            
             var host = hostBuilder.Build();
-
             host.Run();
         }
-        //public static void Main(string[] args)
-        //{
-        //    CreateHostBuilder(args).Build().Run();
-        //}
-
-        //public static IHostBuilder CreateHostBuilder(string[] args) =>
-        //    Host.CreateDefaultBuilder(args)
-        //        .ConfigureWebHostDefaults(webBuilder =>
-        //        {
-        //            webBuilder.UseStartup<Startup>();
-        //        });
     }
 }

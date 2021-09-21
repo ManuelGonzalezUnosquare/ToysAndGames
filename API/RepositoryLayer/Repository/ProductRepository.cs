@@ -51,7 +51,7 @@ namespace RepositoryLayer.Repository
                     throw new Exception("This product already exists for this company");
                 }
 
-                if(model.AgeRestriction <= 0 || model.AgeRestriction > 100)
+                if (model.AgeRestriction <= 0 || model.AgeRestriction > 100)
                 {
                     throw new Exception("Invalid Age restriction");
                 }
@@ -79,7 +79,14 @@ namespace RepositoryLayer.Repository
         public async Task<ListResultViewModel<ProductViewModel>> GetAllProducts(SearchViewModel search)
         {
             int count = CountByParams(search);
-            return new ListResultViewModel<ProductViewModel>(_mapper.Map<List<Product>, List<ProductViewModel>>(FindByParams(search)), count, search);
+
+            if (!string.IsNullOrEmpty(search.Hint))
+            {
+                search.Hint = search.Hint.ToLower();
+            }
+
+            var response = string.IsNullOrEmpty(search.Hint) ? FindByParams(search) : FindByParams(f => f.Name.ToLower().Contains(search.Hint) || f.Price.ToString().Contains(search.Hint), search);
+            return new ListResultViewModel<ProductViewModel>(_mapper.Map<List<Product>, List<ProductViewModel>>(response), count, search);
         }
 
         public async Task<ResultViewModel<ProductViewModel>> GetProductById(Guid guid)
