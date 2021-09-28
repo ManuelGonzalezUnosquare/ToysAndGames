@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/core/models/dbModels';
 import { BaseSearchCriteria } from 'src/app/core/models/searchCriteria';
+import {ProductService} from 'src/app/core/services';
 import { NotificationBarService } from 'src/app/core/services/notification-bar.service';
-import { ProductService } from '../../services/product.service';
-import {ProductFormComponent} from '../product-form/product-form.component';
 
 @Component({
   selector: 'app-product-list',
@@ -56,15 +55,5 @@ export class ProductListComponent implements OnInit {
   clearSearch(): void {
     delete this.search.hint;
     this.searchProducts();
-  }
-  openDialog():void{
-     const dialogRef = this.dialog.open(ProductFormComponent, {
-      width: 'auto',
-      data: {name: 'hola'}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 }

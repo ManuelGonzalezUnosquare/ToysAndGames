@@ -1,0 +1,14 @@
+<carousel [height]="340">
+  <div class="carousel-cell" *ngFor="let product of products">
+    <mat-card class="product-card p-0">
+      <img [src]="product.picThumbnail" class="product-thumbnail" alt="ProductPicture" />
+      <mat-card-content class="p-2">
+        <h3 class="m-0">{{product.name}}</h3>
+        <p>{{product.price | currency}}</p>
+      </mat-card-content>
+      <mat-card-actions class="d-flex justify-content-center">
+        <button mat-button color="warn" [routerLink]="['/product',product.guid]">Buy</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</carousel>

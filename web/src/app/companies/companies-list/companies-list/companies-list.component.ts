@@ -1,15 +1,11 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import {
-  MatBottomSheet,
-  MatBottomSheetRef,
-  MAT_BOTTOM_SHEET_DATA,
-} from '@angular/material/bottom-sheet';
+import { MatBottomSheet, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Company } from 'src/app/core/models/dbModels';
 import { BaseSearchCriteria } from 'src/app/core/models/searchCriteria';
+import {CompanyService} from 'src/app/core/services';
 import { NotificationBarService } from 'src/app/core/services/notification-bar.service';
-import { CompanyService } from './../../services/company.service';
 
 @Component({
   selector: 'bottom-sheet-overview',
@@ -67,5 +63,17 @@ export class CompaniesListComponent implements OnInit {
     this._bottomSheet.open(BottomSheetOverviewExampleSheet, {
       data: { company },
     });
+  }
+
+  searchCompany(): void {
+    if (this.search.hint && this.search.hint.length % 3 === 0) {
+      this.loadCompanies();
+    } else if (!this.search.hint) {
+      this.loadCompanies();
+    }
+  }
+  clearSearch(): void {
+    delete this.search.hint;
+    this.loadCompanies();
   }
 }

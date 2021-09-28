@@ -8,8 +8,12 @@ import { WorkInProgressComponent } from './pages/work-in-progress/work-in-progre
 import { RouterModule } from '@angular/router';
 import { SearchComponent } from './widgets/search/search.component';
 import { StopPropagationDirective } from './directives/stop-propagation.directive';
-
-
+import { ImageUploaderComponent } from './widgets/image-uploader/image-uploader.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { FooterComponent } from './layout/footer/footer.component';
+import { HomeSliderComponent } from './widgets/home-slider/home-slider.component';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { ProductViewerComponent } from './widgets/product-viewer/product-viewer.component';
 
 @NgModule({
   declarations: [
@@ -17,15 +21,13 @@ import { StopPropagationDirective } from './directives/stop-propagation.directiv
     MenubarComponent,
     WorkInProgressComponent,
     SearchComponent,
-    StopPropagationDirective
+    StopPropagationDirective,
+    ImageUploaderComponent,
+    FooterComponent,
+    HomeSliderComponent,
+    ProductViewerComponent,
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    RouterModule,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MaterialModule, RouterModule, ImageCropperModule, IvyCarouselModule],
   exports: [
     FormsModule,
     ReactiveFormsModule,
@@ -33,7 +35,12 @@ import { StopPropagationDirective } from './directives/stop-propagation.directiv
     MenubarComponent,
     WorkInProgressComponent,
     SearchComponent,
-    StopPropagationDirective
-  ]
+    StopPropagationDirective,
+    ImageUploaderComponent,
+    HomeSliderComponent,
+    FooterComponent,
+    IvyCarouselModule,
+    ProductViewerComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

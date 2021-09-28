@@ -18,6 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -41,6 +42,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDividerModule,
     MatBottomSheetModule,
     MatDialogModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatPaginatorModule,
@@ -61,6 +63,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatDividerModule,
     MatBottomSheetModule,
     MatDialogModule,
+    MatAutocompleteModule
   ],
 })
 export class MaterialModule {}

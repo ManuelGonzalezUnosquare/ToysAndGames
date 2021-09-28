@@ -14,7 +14,6 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     HomeRoutingModule,
     MaterialModule,
     SharedModule,
-    IvyCarouselModule,
   ],
 })
 export class HomeModule {}

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/core/models/dbModels';
+import {ProductService} from 'src/app/core/services';
 import { NotificationBarService } from 'src/app/core/services/notification-bar.service';
-import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-details',

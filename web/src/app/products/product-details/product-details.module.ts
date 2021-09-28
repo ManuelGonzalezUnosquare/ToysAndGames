@@ -4,6 +4,7 @@ import { ProductDetailsRoutingModule } from './product-details-routing.module';
 import { MaterialModule } from 'src/app/material/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import {ImageCropperModule} from 'ngx-image-cropper';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     CommonModule,
     ProductDetailsRoutingModule,
     MaterialModule,
+    ImageCropperModule,
     SharedModule
   ]
 })

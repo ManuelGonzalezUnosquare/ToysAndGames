@@ -1,16 +1,8 @@
 <div class="component-container">
-  <mat-toolbar
-    role="heading"
-    class="mat-toolbar page-header mat-toolbar-single-row"
-  >
+  <mat-toolbar role="heading" class="mat-toolbar page-header mat-toolbar-single-row">
     <h1>Products</h1>
     <div class="desktop-menu">
-      <button
-        mat-flat-button=""
-        color="primary"
-	(click)="openDialog()"
-        class="mat-flat-button mat-button-base"
-      >
+      <button mat-flat-button="" color="primary" class="mat-flat-button mat-button-base" [routerLink]="['/product/new']">
         <span class="mat-button-wrapper">New</span>
         <span matripple="" class="mat-ripple mat-button-ripple"></span>
         <span class="mat-button-focus-overlay"></span>
@@ -21,20 +13,9 @@
     <div class="filter-section">
       <mat-form-field class="w-75" appearance="fill">
         <mat-label>Search ...</mat-label>
-        <input
-          matInput
-          type="text"
-          class="w-100"
-          [(ngModel)]="search.hint"
-          (keyup)="searchProducts()"
-          autocomplete="off"
-        />
-        <button
-          matSuffix
-          mat-icon-button
-          aria-label="Clear"
-          (click)="clearSearch()"
-        >
+        <input matInput class="w-100" [(ngModel)]="search.hint" (keyup)="searchProducts()" autocomplete="off" />
+
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="clearSearch()">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
@@ -44,35 +25,21 @@
         <!-- Name Column -->
         <ng-container matColumnDef="name" class="mat-column-name">
           <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element" class="text-capitalize">
-            {{element.name}}
-          </td>
+          <td mat-cell *matCellDef="let element" class="text-capitalize">{{element.name}}</td>
         </ng-container>
         <!-- Price Column -->
         <ng-container matColumnDef="price" class="mat-column-price">
           <th mat-header-cell *matHeaderCellDef>Price</th>
-          <td mat-cell *matCellDef="let element" class="text-capitalize">
-            {{element.price | currency}}
-          </td>
+          <td mat-cell *matCellDef="let element" class="text-capitalize">{{element.price | currency}}</td>
         </ng-container>
         <!-- Actions Column -->
         <ng-container matColumnDef="actions" class="mat-column-actions">
           <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let row">
-            <button
-              mat-button
-              color="primary"
-              title="Edit"
-              [routerLink]="['/company/',row.guid]"
-            >
+            <button mat-button color="primary" title="Edit" [routerLink]="['/company/',row.guid]">
               <mat-icon>edit</mat-icon>
             </button>
-            <button
-              mat-button
-              color="primary"
-              title="Delete"
-              [routerLink]="['/company/',row.guid,'delete']"
-            >
+            <button mat-button color="primary" title="Delete" [routerLink]="['/company/',row.guid,'delete']">
               <mat-icon>delete</mat-icon>
             </button>
           </td>
@@ -84,12 +51,7 @@
     <div class="mobile-view">
       <mat-nav-list>
         <mat-list-item *ngFor="let product of products">
-          <a
-            matLine
-            href="#"
-            appStopPropagation
-            class="d-flex justify-content-between align-items-center"
-          >
+          <a matLine href="#" appStopPropagation class="d-flex justify-content-between align-items-center">
             <div>
               <p class="m-0">{{product.name}}</p>
             </div>

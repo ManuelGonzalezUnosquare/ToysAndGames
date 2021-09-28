@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Company } from 'src/app/core/models/dbModels';
-import { ReturnListModel, ReturnModel } from 'src/app/core/models/responses';
-import { BaseSearchCriteria } from 'src/app/core/models/searchCriteria';
-import { RequestService } from 'src/app/core/services';
+import {Observable} from 'rxjs';
+import {Company} from '../models/dbModels';
+import {ReturnListModel, ReturnModel} from '../models/responses';
+import {BaseSearchCriteria} from '../models/searchCriteria';
+import {RequestService} from './request.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
-
   constructor(private reqService: RequestService) { }
 
   getAll(search: BaseSearchCriteria): Observable<ReturnListModel<Company>> {
@@ -28,4 +27,5 @@ export class CompanyService {
   delete(guid: string, isPermanent: boolean) {
     return this.reqService.deleteWithParams('company', { guid, isPermanent });
   }
+
 }

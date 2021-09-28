@@ -6,10 +6,13 @@ export class BaseSearchCriteria {
   active?:boolean =  true;
   totalNumberOfRecords:number = 0;
   hint?:string;
+  orderBy?:string;
+  orderDir:string;
 
   loadResultList(result: ReturnListModel<any>){
     this.page = result.page;
     this.perPage = result.perPage;
     this.totalNumberOfRecords = result.totalNumberOfRecords;
+    this.orderDir = 'desc';
   }
 }
