@@ -11,7 +11,7 @@ namespace RepositoryLayer.Contracts
     {
         public T FindByGuid(Guid guid);
         public List<T> FindByParams(SearchViewModel search);
-        public int CountByParams(SearchViewModel search);
+        public int CountByParams(SearchViewModel search, Func<T, bool> expression = null);
         public T Add(T model);
         public T Update(T model);
         public T Delete(T model);

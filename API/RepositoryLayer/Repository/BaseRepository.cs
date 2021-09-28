@@ -26,15 +26,21 @@ namespace RepositoryLayer.Repository
         public T Add(T model)
         {
             model.Guid = Guid.NewGuid();
-            var res =_context.Set<T>().Add(model);
+            var res = _context.Set<T>().Add(model);
             _context.SaveChanges();
             return res.Entity;
         }
 
-        public int CountByParams(SearchViewModel search)
+        public int CountByParams(SearchViewModel search, Func<T, bool> expression = null)
         {
             var query = from v in _context.Set<T>()
                         select v;
+
+            if (expression != null)
+            {
+                query = query.Where(expression).AsQueryable();
+            }
+
             if (search.Guid.HasValue)
             {
                 query = from v in query
@@ -65,22 +71,56 @@ namespace RepositoryLayer.Repository
         {
             var query = from v in _context.Set<T>()
                         select v;
+            //Guid
             if (search.Guid.HasValue)
             {
                 query = from v in query
                         where v.Guid == search.Guid.Value
                         select v;
             }
+            //Active
             if (search.Active.HasValue)
             {
                 query = from v in query
                         where v.Active == search.Active.Value
                         select v;
             }
+            //Order by
+            if (!string.IsNullOrEmpty(search.OrderBy))
+            {
+                if (search.OrderDir == "asc")
+                {
+                    query = (from v in query
+                             select v)
+                      .OrderBy(f => search.OrderBy);
+                }
+                else
+                {
+                    query = (from v in query
+                             select v)
+                      .OrderByDescending(f => search.OrderBy);
+                }
+            }
+            else
+            {
+                if (search.OrderDir == "asc")
+                {
+                    query = (from v in query
+                             select v)
+                      .OrderBy(f => f.Id);
+                }
+                else
+                {
+                    query = (from v in query
+                             select v)
+                      .OrderByDescending(f => f.Id);
+                }
+            }
+
+
 
             query = (from v in query
                      select v)
-                     .OrderBy(f => f.Id)
                       .Skip((search.Page - 1) * search.PerPage)
                       .Take(search.PerPage);
 
@@ -116,7 +156,7 @@ namespace RepositoryLayer.Repository
         }
         public T Update(T model)
         {
-            var res =_context.Set<T>().Update(model);
+            var res = _context.Set<T>().Update(model);
             _context.SaveChanges();
             return res.Entity;
         }

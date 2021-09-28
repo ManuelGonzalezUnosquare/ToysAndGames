@@ -37,7 +37,7 @@ namespace RepositoryLayer.Repository
                     throw new Exception("Invalid product price");
                 }
 
-                Company company = _context.Companies.FirstOrDefault(f => f.Guid == model.Company.Guid);
+                Company company = _context.Companies.FirstOrDefault(f => f.Guid == model.CompanyGuid);
 
                 if (company == null)
                 {
@@ -62,6 +62,7 @@ namespace RepositoryLayer.Repository
                 }
 
                 Product prod = _mapper.Map<Product>(model);
+                prod.Company = company;
                 return new ResultViewModel<ProductViewModel>(_mapper.Map<ProductViewModel>(Add(prod)));
 
             }
@@ -77,8 +78,8 @@ namespace RepositoryLayer.Repository
         }
 
         public async Task<ListResultViewModel<ProductViewModel>> GetAllProducts(SearchViewModel search)
-        {
-            int count = CountByParams(search);
+        {   
+            int count = !string.IsNullOrEmpty(search.Hint) ? CountByParams(search, f => f.Name.ToLower().Contains(search.Hint) || f.Price.ToString().Contains(search.Hint)) : CountByParams(search);
 
             if (!string.IsNullOrEmpty(search.Hint))
             {

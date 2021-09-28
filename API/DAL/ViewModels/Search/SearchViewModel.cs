@@ -14,5 +14,8 @@ namespace DAL.ViewModels
         public int Page { get; set; } = 1;
         public int PerPage { get; set; } = 15;
         public string? Hint { get; set; }
+
+        public string? OrderBy { get; set; }
+        public string OrderDir { get; set; } = "desc";
     }
 }

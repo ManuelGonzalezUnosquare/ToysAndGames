@@ -72,8 +72,15 @@ namespace RepositoryLayer.Repository
 
         public async Task<ListResultViewModel<CompanyViewModel>> GetAllCompanies(SearchViewModel search)
         {
-            int count = CountByParams(search);
-            return new ListResultViewModel<CompanyViewModel>(_mapper.Map<List<Company>, List<CompanyViewModel>>(FindByParams(search)), count, search);
+            int count = !string.IsNullOrEmpty(search.Hint) ? CountByParams(search, f => f.Name.ToLower().Contains(search.Hint)) : CountByParams(search);
+
+            if (!string.IsNullOrEmpty(search.Hint))
+            {
+                search.Hint = search.Hint.ToLower();
+            }
+
+            var response = string.IsNullOrEmpty(search.Hint) ? FindByParams(search) : FindByParams(f => f.Name.ToLower().Contains(search.Hint), search);
+            return new ListResultViewModel<CompanyViewModel>(_mapper.Map<List<Company>, List<CompanyViewModel>>(response), count, search);
         }
 
         public async Task<ResultViewModel<CompanyViewModel>> GetCompanyById(Guid guid)
